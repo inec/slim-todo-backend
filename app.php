@@ -23,6 +23,9 @@ $app = new Slim\App([
 require __DIR__ . "/config/logger.php";
 require __DIR__ . "/config/database.php";
 
+
+
+
 $app->add(new \Tuupola\Middleware\Cors([
     "origin" => "*",
     "methods" => ["GET", "POST", "PATCH", "DELETE"],
@@ -111,6 +114,11 @@ $app->delete("/todos/{uid}", function ($request, $response, $arguments) {
 $app->delete("/todos", function ($request, $response, $arguments) {
     $this->spot->mapper("App\Todo")->delete();
     return $response->withStatus(204);
+});
+
+
+$app->get("/test", function () {
+   echo "<h1>Hello Slim World</h1>";
 });
 
 $app->run();
