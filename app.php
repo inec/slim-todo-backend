@@ -121,4 +121,11 @@ $app->get("/test", function () {
    echo "<h1>Hello Slim World</h1>";
 });
 
+$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
+    $name = $args['name'];
+    $response->getBody()->write("Hello, $name");
+
+    return $response;
+});
+
 $app->run();
